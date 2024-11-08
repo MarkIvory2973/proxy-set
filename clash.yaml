@@ -1,0 +1,508 @@
+log-level: info
+external-controller: 127.0.0.1:9090
+profile:
+  store-selected: true
+  store-fake-ip: true
+tcp-concurrent: true
+unified-delay: true
+
+dns:
+  enable: true
+  prefer-h3: true
+  listen: 0.0.0.0:53
+  ipv6: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "localhost.ptlogin2.qq.com"
+    - "+.srv.nintendo.net"
+    - "+.stun.playstation.net"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "+.xboxlive.com"
+    - "msftconnecttest.com"
+    - "xbox.*.microsoft.com"
+  nameserver:
+    - https://223.5.5.5/dns-query#👆 PROXY D
+    - https://223.6.6.6/dns-query#👆 PROXY D
+    - https://1.12.12.12/dns-query#👆 PROXY D
+    - https://120.53.53.53/dns-query#👆 PROXY D
+  fallback:
+    - https://8.8.8.8/dns-query#👆 PROXY F
+    - https://8.8.4.4/dns-query#👆 PROXY F
+    - https://1.1.1.1/dns-query#👆 PROXY F
+    - https://1.0.0.1/dns-query#👆 PROXY F
+  nameserver-policy:
+    "geosite:cn": [https://223.5.5.5/dns-query#👆 PROXY D, https://223.6.6.6/dns-query#👆 PROXY D]
+    "rule-set:Direct,iCloud,Apple": [https://223.5.5.5/dns-query#👆 PROXY D, https://223.6.6.6/dns-query#👆 PROXY D]
+    "geosite:geolocation-!cn": [https://8.8.8.8/dns-query#👆 PROXY F, https://1.1.1.1/dns-query#👆 PROXY F, https://8.8.4.4/dns-query#👆 PROXY F, https://1.0.0.1/dns-query#👆 PROXY F]
+    "rule-set:Proxy,Google,GoogleFCM": [https://8.8.8.8/dns-query#👆 PROXY F, https://1.1.1.1/dns-query#👆 PROXY F, https://8.8.4.4/dns-query#👆 PROXY F, https://1.0.0.1/dns-query#👆 PROXY F]
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    geosite:
+      - gfw
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - "+.google.com"
+      - "+.facebook.com"
+      - "+.youtube.com"
+
+proxy-providers:
+  anaer/Sub:
+    type: http
+    url: "https://raw.githubusercontent.com/anaer/Sub/refs/heads/main/clash.yaml"
+    path: ./providers/proxies/qjlxg_aggregator.yaml
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 300
+      timeout: 3000
+
+  qjlxg/aggregator:
+    type: http
+    url: "https://raw.githubusercontent.com/qjlxg/aggregator/main/data/clash.yaml"
+    path: ./providers/proxies/qjlxg_aggregator.yaml
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 300
+      timeout: 3000
+
+  soroushmirzaei/telegram-configs-collector:
+    type: http
+    url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/security/tls"
+    path: ./providers/proxies/soroushmirzaei_telegram-configs-collector.yaml
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 300
+      timeout: 3000
+
+  ripaojiedian/freenode:
+    type: http
+    url: "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
+    path: ./providers/proxies/ripaojiedian_freenode.yaml
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 300
+      timeout: 3000
+
+  go4sharing/sub:
+    type: http
+    url: "https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml"
+    path: ./providers/proxies/go4sharing_sub.yaml
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 300
+      timeout: 3000
+
+  snakem982/proxypool:
+    type: http
+    url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
+    path: ./providers/proxies/snakem982_proxypool.yaml
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 300
+      timeout: 3000
+    
+  Ruk1ng001/freeSub:
+    type: http
+    url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
+    path: ./providers/proxies/Ruk1ng001_freeSub.yaml
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 300
+      timeout: 3000
+
+  chengaopan/AutoMergePublicNodes:
+    type: http
+    url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
+    path: ./providers/proxies/chengaopan_AutoMergePublicNodes.yaml
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 300
+      timeout: 3000
+
+  ermaozi/get_subscribe:
+    type: http
+    url: "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"
+    path: ./providers/proxies/ermaozi_get_subscribe.yaml
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 300
+      timeout: 3000
+
+  peasoft/NoMoreWalls:
+    type: http
+    url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.meta.yml"
+    path: ./providers/proxies/peasoft_NoMoreWalls.yaml
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 300
+      timeout: 3000
+
+  Flikify/getNode:
+    type: http
+    url: "https://raw.githubusercontent.com/Flikify/getNode/main/clash.yaml"
+    path: ./providers/proxies/Flikify_getNode.yaml
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 300
+      timeout: 3000
+
+  Unknown:
+    type: http
+    url: "http://172.245.30.41/clash.yaml"
+    path: ./providers/proxies/Unknown.yaml
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.google.com/generate_204
+      interval: 300
+      timeout: 3000
+
+rule-providers:
+  AD1:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/AD.yaml"
+    path: ./providers/rules/AD1.yaml
+    interval: 86400
+    
+  AD2:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyList.yaml"
+    path: ./providers/rules/AD2.yaml
+    interval: 86400
+    
+  AD3:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyListChina.yaml"
+    path: ./providers/rules/AD3.yaml
+    interval: 86400
+
+  AD4:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyPrivacy.yaml"
+    path: ./providers/rules/AD4.yaml
+    interval: 86400
+
+  AD5:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/ProgramAD.yaml"
+    path: ./providers/rules/AD5.yaml
+    interval: 86400
+
+  AD6:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    path: ./providers/rules/AD6.yaml
+    interval: 86400
+
+  iCloud:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
+    path: ./providers/rules/iCloud.yaml
+    interval: 86400
+
+  Apple:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
+    path: ./providers/rules/Apple.yaml
+    interval: 86400
+
+  Google:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
+    path: ./providers/rules/Google.yaml
+    interval: 86400
+    
+  GoogleFCM:
+    type: http
+    behavior: classical
+    format: text
+    path: ./providers/rules/GoogleFCM.list 
+    url: "https://raw.githubusercontent.com/rules/GoogleFCM.list"
+    interval: 86400
+
+  Proxy:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    path: ./providers/rules/Proxy.yaml
+    interval: 86400
+
+  Direct:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    path: ./providers/rules/Direct.yaml
+    interval: 86400
+
+  Private:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    path: ./providers/rules/Private.yaml
+    interval: 86400
+    
+  TLDNOTCN:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt"
+    path: ./providers/rules/TLDNOTCN.yaml
+    interval: 86400
+
+  TelegramCidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+    path: ./providers/rules/TelegramCidr.yaml
+    interval: 86400
+
+  CNCidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    path: ./providers/rules/CNCidr.yaml
+    interval: 86400
+
+  LANCidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    path: ./providers/rules/LANCidr.yaml
+    interval: 86400
+
+  APP:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
+    path: ./providers/rules/APP.yaml
+    interval: 86400
+
+proxy-groups:
+  - name: 👆 PROXY F
+    type: select
+    url: "https://www.google.com/generate_204"
+    interval: 300
+    proxies:
+      - ♻️ AUTO F
+      - ⚖️ BALANCE CHF
+      - ⚖️ BALANCE RRF
+      - REJECT
+    use:
+      - anaer/Sub
+      - qjlxg/aggregator
+      - soroushmirzaei/telegram-configs-collector
+      - ripaojiedian/freenode
+      - go4sharing/sub
+      - snakem982/proxypool
+      - Ruk1ng001/freeSub
+      - chengaopan/AutoMergePublicNodes
+      - ermaozi/get_subscribe
+      - peasoft/NoMoreWalls
+      - Flikify/getNode
+      - Unknown
+  
+  - name: ♻️ AUTO F
+    type: url-test
+    url: "https://www.google.com/generate_204"
+    interval: 300
+    tolerance: 150
+    hidden: true
+    use:
+      - anaer/Sub
+      - qjlxg/aggregator
+      - soroushmirzaei/telegram-configs-collector
+      - ripaojiedian/freenode
+      - go4sharing/sub
+      - snakem982/proxypool
+      - Ruk1ng001/freeSub
+      - chengaopan/AutoMergePublicNodes
+      - ermaozi/get_subscribe
+      - peasoft/NoMoreWalls
+      - Flikify/getNode
+      - Unknown
+
+  - name: ⚖️ BALANCE CHF
+    type: load-balance
+    url: "https://www.google.com/generate_204"
+    interval: 300
+    strategy: consistent-hashing
+    hidden: true
+    use:
+      - anaer/Sub
+      - qjlxg/aggregator
+      - soroushmirzaei/telegram-configs-collector
+      - ripaojiedian/freenode
+      - go4sharing/sub
+      - snakem982/proxypool
+      - Ruk1ng001/freeSub
+      - chengaopan/AutoMergePublicNodes
+      - ermaozi/get_subscribe
+      - peasoft/NoMoreWalls
+      - Flikify/getNode
+      - Unknown
+
+  - name: ⚖️ BALANCE RRF
+    type: load-balance
+    url: "https://www.google.com/generate_204"
+    interval: 300
+    strategy: round-robin
+    hidden: true
+    use:
+      - anaer/Sub
+      - qjlxg/aggregator
+      - soroushmirzaei/telegram-configs-collector
+      - ripaojiedian/freenode
+      - go4sharing/sub
+      - snakem982/proxypool
+      - Ruk1ng001/freeSub
+      - chengaopan/AutoMergePublicNodes
+      - ermaozi/get_subscribe
+      - peasoft/NoMoreWalls
+      - Flikify/getNode
+      - Unknown
+
+  - name: 👆 PROXY D
+    type: select
+    url: "http://connect.rom.miui.com/generate_204"
+    interval: 300
+    proxies:
+      - ♻️ AUTO D
+      - ⚖️ BALANCE CHD
+      - ⚖️ BALANCE RRD
+      - DIRECT
+      - REJECT
+    use:
+      - anaer/Sub
+      - qjlxg/aggregator
+      - soroushmirzaei/telegram-configs-collector
+      - ripaojiedian/freenode
+      - go4sharing/sub
+      - snakem982/proxypool
+      - Ruk1ng001/freeSub
+      - chengaopan/AutoMergePublicNodes
+      - ermaozi/get_subscribe
+      - peasoft/NoMoreWalls
+      - Flikify/getNode
+      - Unknown
+
+  - name: ♻️ AUTO D
+    type: url-test
+    url: "http://connect.rom.miui.com/generate_204"
+    interval: 300
+    tolerance: 100
+    hidden: true
+    use:
+      - anaer/Sub
+      - qjlxg/aggregator
+      - soroushmirzaei/telegram-configs-collector
+      - ripaojiedian/freenode
+      - go4sharing/sub
+      - snakem982/proxypool
+      - Ruk1ng001/freeSub
+      - chengaopan/AutoMergePublicNodes
+      - ermaozi/get_subscribe
+      - peasoft/NoMoreWalls
+      - Flikify/getNode
+      - Unknown
+
+  - name: ⚖️ BALANCE CHD
+    type: load-balance
+    url: "http://connect.rom.miui.com/generate_204"
+    interval: 300
+    strategy: consistent-hashing
+    hidden: true
+    use:
+      - anaer/Sub
+      - qjlxg/aggregator
+      - soroushmirzaei/telegram-configs-collector
+      - ripaojiedian/freenode
+      - go4sharing/sub
+      - snakem982/proxypool
+      - Ruk1ng001/freeSub
+      - chengaopan/AutoMergePublicNodes
+      - ermaozi/get_subscribe
+      - peasoft/NoMoreWalls
+      - Flikify/getNode
+      - Unknown
+
+  - name: ⚖️ BALANCE RRD
+    type: load-balance
+    url: "http://connect.rom.miui.com/generate_204"
+    interval: 300
+    strategy: round-robin
+    hidden: true
+    use:
+      - anaer/Sub
+      - qjlxg/aggregator
+      - soroushmirzaei/telegram-configs-collector
+      - ripaojiedian/freenode
+      - go4sharing/sub
+      - snakem982/proxypool
+      - Ruk1ng001/freeSub
+      - chengaopan/AutoMergePublicNodes
+      - ermaozi/get_subscribe
+      - peasoft/NoMoreWalls
+      - Flikify/getNode
+      - Unknown
+
+rules:
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  - RULE-SET,APP,DIRECT
+
+  - RULE-SET,AD1,REJECT
+  - RULE-SET,AD2,REJECT
+  - RULE-SET,AD3,REJECT
+  - RULE-SET,AD4,REJECT
+  - RULE-SET,AD5,REJECT
+  - RULE-SET,AD6,REJECT
+
+  - GEOIP,LAN,DIRECT
+  - RULE-SET,LANCidr,DIRECT
+  - RULE-SET,Private,DIRECT
+
+  - GEOIP,CN,👆 PROXY D
+  - RULE-SET,CNCidr,👆 PROXY D
+  - RULE-SET,Direct,👆 PROXY D
+  - RULE-SET,iCloud,👆 PROXY D
+  - RULE-SET,Apple,👆 PROXY D
+
+  - RULE-SET,Proxy,👆 PROXY F
+  - RULE-SET,Google,👆 PROXY F
+  - RULE-SET,GoogleFCM,👆 PROXY F
+  - RULE-SET,TelegramCidr,👆 PROXY F
+  - MATCH,👆 PROXY F
