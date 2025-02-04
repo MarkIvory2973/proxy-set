@@ -46,7 +46,3 @@ Clash 免费代理集。
 - [ermaozi/get_subscribe](https://github.com/ermaozi/get_subscribe): ✈️ 免费机场 / 免费VPN -> 自动获取免 clash/v2ray/trojan/sr/ssr 订阅链接，间隔12小时持续更新 | 科学上网 | 翻墙
 - [peasoft/NoMoreWalls](https://github.com/peasoft/NoMoreWalls): 自动抓取合并互联网上的公开节点。
 - [Flikify/getNode](https://github.com/Flikify/getNode): 每小时更新最新的Clash、v2ray节点信息
-
-来自公开网络：
-
-- 未知来源: http://172.245.30.41/clash.yaml
