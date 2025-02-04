@@ -172,17 +172,6 @@ proxy-providers:
       interval: 300
       timeout: 3000
 
-  Unknown:
-    type: http
-    url: "http://172.245.30.41/clash.yaml"
-    path: ./providers/proxies/Unknown.yaml
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://www.google.com/generate_204
-      interval: 300
-      timeout: 3000
-
 rule-providers:
   AD1:
     type: http
@@ -333,7 +322,6 @@ proxy-groups:
       - ermaozi/get_subscribe
       - peasoft/NoMoreWalls
       - Flikify/getNode
-      - Unknown
   
   - name: ♻️ AUTO F
     type: url-test
@@ -353,7 +341,6 @@ proxy-groups:
       - ermaozi/get_subscribe
       - peasoft/NoMoreWalls
       - Flikify/getNode
-      - Unknown
 
   - name: ⚖️ BALANCE CHF
     type: load-balance
@@ -373,7 +360,6 @@ proxy-groups:
       - ermaozi/get_subscribe
       - peasoft/NoMoreWalls
       - Flikify/getNode
-      - Unknown
 
   - name: ⚖️ BALANCE RRF
     type: load-balance
@@ -393,7 +379,6 @@ proxy-groups:
       - ermaozi/get_subscribe
       - peasoft/NoMoreWalls
       - Flikify/getNode
-      - Unknown
 
   - name: 👆 PROXY D
     type: select
@@ -417,7 +402,6 @@ proxy-groups:
       - ermaozi/get_subscribe
       - peasoft/NoMoreWalls
       - Flikify/getNode
-      - Unknown
 
   - name: ♻️ AUTO D
     type: url-test
@@ -437,7 +421,6 @@ proxy-groups:
       - ermaozi/get_subscribe
       - peasoft/NoMoreWalls
       - Flikify/getNode
-      - Unknown
 
   - name: ⚖️ BALANCE CHD
     type: load-balance
@@ -457,7 +440,6 @@ proxy-groups:
       - ermaozi/get_subscribe
       - peasoft/NoMoreWalls
       - Flikify/getNode
-      - Unknown
 
   - name: ⚖️ BALANCE RRD
     type: load-balance
@@ -477,7 +459,6 @@ proxy-groups:
       - ermaozi/get_subscribe
       - peasoft/NoMoreWalls
       - Flikify/getNode
-      - Unknown
 
 rules:
   - DOMAIN,clash.razord.top,DIRECT
