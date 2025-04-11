@@ -81,57 +81,57 @@ proxy-provider: &proxy-provider
 proxy-providers:
   anaer/Sub:
     <<: *proxy-provider
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/anaer/Sub/refs/heads/main/clash.yaml"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/anaer/Sub/refs/heads/main/clash.yaml"
     path: ./providers/proxies/qjlxg_aggregator.yaml
 
   qjlxg/aggregator:
     <<: *proxy-provider
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/qjlxg/aggregator/main/data/clash.yaml"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/qjlxg/aggregator/main/data/clash.yaml"
     path: ./providers/proxies/qjlxg_aggregator.yaml
 
   soroushmirzaei/telegram-configs-collector:
     <<: *proxy-provider
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/security/tls"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/security/tls"
     path: ./providers/proxies/soroushmirzaei_telegram-configs-collector.yaml
 
   ripaojiedian/freenode:
     <<: *proxy-provider
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
     path: ./providers/proxies/ripaojiedian_freenode.yaml
 
   go4sharing/sub:
     <<: *proxy-provider
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml"
     path: ./providers/proxies/go4sharing_sub.yaml
 
   snakem982/proxypool:
     <<: *proxy-provider
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
     path: ./providers/proxies/snakem982_proxypool.yaml
     
   Ruk1ng001/freeSub:
     <<: *proxy-provider
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
     path: ./providers/proxies/Ruk1ng001_freeSub.yaml
 
   chengaopan/AutoMergePublicNodes:
     <<: *proxy-provider
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
     path: ./providers/proxies/chengaopan_AutoMergePublicNodes.yaml
 
   ermaozi/get_subscribe:
     <<: *proxy-provider
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"
     path: ./providers/proxies/ermaozi_get_subscribe.yaml
 
   peasoft/NoMoreWalls:
     <<: *proxy-provider
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.meta.yml"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.meta.yml"
     path: ./providers/proxies/peasoft_NoMoreWalls.yaml
 
   Flikify/getNode:
     <<: *proxy-provider
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/Flikify/getNode/main/clash.yaml"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/Flikify/getNode/main/clash.yaml"
     path: ./providers/proxies/Flikify_getNode.yaml
 
 rule-provider: &rule-provider
@@ -142,31 +142,31 @@ rule-providers:
   AD1:
     <<: *rule-provider
     behavior: domain
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/earoftoast/clash-rules/main/AD.yaml"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/earoftoast/clash-rules/main/AD.yaml"
     path: ./providers/rules/AD1.yaml
 
   AD2:
     <<: *rule-provider
     behavior: domain
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyList.yaml"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyList.yaml"
     path: ./providers/rules/AD2.yaml
 
   AD3:
     <<: *rule-provider
     behavior: domain
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyListChina.yaml"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyListChina.yaml"
     path: ./providers/rules/AD3.yaml
 
   AD4:
     <<: *rule-provider
     behavior: domain
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyPrivacy.yaml"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyPrivacy.yaml"
     path: ./providers/rules/AD4.yaml
 
   AD5:
     <<: *rule-provider
     behavior: domain
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/earoftoast/clash-rules/main/ProgramAD.yaml"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/earoftoast/clash-rules/main/ProgramAD.yaml"
     path: ./providers/rules/AD5.yaml
 
   AD6:
@@ -198,7 +198,7 @@ rule-providers:
     behavior: classical
     format: text
     path: ./providers/rules/GoogleFCM.list
-    url: "https://gh.api.99988866.xyz/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list"
 
   Proxy:
     <<: *rule-provider

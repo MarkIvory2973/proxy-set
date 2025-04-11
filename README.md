@@ -9,7 +9,7 @@ Clash 免费代理集。
 |源|链接|
 |:-:|:-|
 |GitHub|https://raw.githubusercontent.com/MarkIvory2973/ProxySet/refs/heads/main/clash.yaml|
-|Cloudflare Workers|https://gh.api.99988866.xyz/https://raw.githubusercontent.com/MarkIvory2973/ProxySet/refs/heads/main/clash.yaml|
+|Cloudflare Workers|https://ghproxy.net/https://raw.githubusercontent.com/MarkIvory2973/ProxySet/refs/heads/main/clash.yaml|
 
 ## 策略组
 
