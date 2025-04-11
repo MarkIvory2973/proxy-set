@@ -1,48 +1,67 @@
-log-level: info
-external-controller: 127.0.0.1:9090
-profile:
-  store-selected: true
-  store-fake-ip: true
 tcp-concurrent: true
 unified-delay: true
 
+tun:
+  enable: true
+  stack: system
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  strict-route: true
+
 dns:
   enable: true
-  prefer-h3: true
-  listen: 0.0.0.0:53
+  listen: :53
   ipv6: true
+  prefer-h3: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-    - "*.lan"
+    - "+.lan"
+    - "+.local"
     - "localhost.ptlogin2.qq.com"
     - "+.srv.nintendo.net"
+    - "+.market.xiaomi.com"
     - "+.stun.playstation.net"
     - "+.msftconnecttest.com"
     - "+.msftncsi.com"
     - "+.xboxlive.com"
     - "msftconnecttest.com"
     - "xbox.*.microsoft.com"
+    - "+.ts.net"
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 1.1.1.1
+    - 8.8.8.8
+  proxy-server-nameserver:
+    - "https://dns.alidns.com/dns-query#👆 PROXY D"
+    - "https://doh.pub/dns-query#👆 PROXY D"
   nameserver:
-    - https://223.5.5.5/dns-query#👆 PROXY D
-    - https://223.6.6.6/dns-query#👆 PROXY D
-    - https://1.12.12.12/dns-query#👆 PROXY D
-    - https://120.53.53.53/dns-query#👆 PROXY D
+    - "https://dns.alidns.com/dns-query#👆 PROXY D"
+    - "https://doh.pub/dns-query#👆 PROXY D"
   fallback:
-    - https://8.8.8.8/dns-query#👆 PROXY F
-    - https://8.8.4.4/dns-query#👆 PROXY F
-    - https://1.1.1.1/dns-query#👆 PROXY F
-    - https://1.0.0.1/dns-query#👆 PROXY F
+    - "https://1dot1dot1dot1.cloudflare-dns.com/#👆 PROXY F"
+    - "https://dns.google/dns-query#👆 PROXY F"
   nameserver-policy:
-    "geosite:cn": [https://223.5.5.5/dns-query#👆 PROXY D, https://223.6.6.6/dns-query#👆 PROXY D]
-    "rule-set:Direct,iCloud,Apple": [https://223.5.5.5/dns-query#👆 PROXY D, https://223.6.6.6/dns-query#👆 PROXY D]
-    "geosite:geolocation-!cn": [https://8.8.8.8/dns-query#👆 PROXY F, https://1.1.1.1/dns-query#👆 PROXY F, https://8.8.4.4/dns-query#👆 PROXY F, https://1.0.0.1/dns-query#👆 PROXY F]
-    "rule-set:Proxy,Google,GoogleFCM": [https://8.8.8.8/dns-query#👆 PROXY F, https://1.1.1.1/dns-query#👆 PROXY F, https://8.8.4.4/dns-query#👆 PROXY F, https://1.0.0.1/dns-query#👆 PROXY F]
+    "geosite:cn":
+      - "https://dns.alidns.com/dns-query#👆 PROXY D"
+      - "https://doh.pub/dns-query#👆 PROXY D"
+    "rule-set:Direct,iCloud,Apple":
+      - "https://dns.alidns.com/dns-query#👆 PROXY D"
+      - "https://doh.pub/dns-query#👆 PROXY D"
+    "geosite:geolocation-!cn":
+      - "https://1dot1dot1dot1.cloudflare-dns.com/#👆 PROXY F"
+      - "https://dns.google/dns-query#👆 PROXY F"
+    "rule-set:Proxy,Google,GoogleFCM":
+      - "https://1dot1dot1dot1.cloudflare-dns.com/#👆 PROXY F"
+      - "https://dns.google/dns-query#👆 PROXY F"
   fallback-filter:
     geoip: true
     geoip-code: CN
-    geosite:
-      - gfw
     ipcidr:
       - 240.0.0.0/4
     domain:
@@ -50,415 +69,273 @@ dns:
       - "+.facebook.com"
       - "+.youtube.com"
 
+proxy-provider: &proxy-provider
+  type: http
+  interval: 86400
+  health-check:
+    enable: true
+    url: https://www.google.com/generate_204
+    interval: 300
+    timeout: 3000
+
 proxy-providers:
   anaer/Sub:
-    type: http
+    <<: *proxy-provider
     url: "https://raw.githubusercontent.com/anaer/Sub/refs/heads/main/clash.yaml"
     path: ./providers/proxies/qjlxg_aggregator.yaml
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://www.google.com/generate_204
-      interval: 300
-      timeout: 3000
 
   qjlxg/aggregator:
-    type: http
+    <<: *proxy-provider
     url: "https://raw.githubusercontent.com/qjlxg/aggregator/main/data/clash.yaml"
     path: ./providers/proxies/qjlxg_aggregator.yaml
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://www.google.com/generate_204
-      interval: 300
-      timeout: 3000
 
   soroushmirzaei/telegram-configs-collector:
-    type: http
+    <<: *proxy-provider
     url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/security/tls"
     path: ./providers/proxies/soroushmirzaei_telegram-configs-collector.yaml
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://www.google.com/generate_204
-      interval: 300
-      timeout: 3000
 
   ripaojiedian/freenode:
-    type: http
+    <<: *proxy-provider
     url: "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash"
     path: ./providers/proxies/ripaojiedian_freenode.yaml
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://www.google.com/generate_204
-      interval: 300
-      timeout: 3000
 
   go4sharing/sub:
-    type: http
+    <<: *proxy-provider
     url: "https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml"
     path: ./providers/proxies/go4sharing_sub.yaml
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://www.google.com/generate_204
-      interval: 300
-      timeout: 3000
 
   snakem982/proxypool:
-    type: http
+    <<: *proxy-provider
     url: "https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
     path: ./providers/proxies/snakem982_proxypool.yaml
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://www.google.com/generate_204
-      interval: 300
-      timeout: 3000
     
   Ruk1ng001/freeSub:
-    type: http
+    <<: *proxy-provider
     url: "https://raw.githubusercontent.com/Ruk1ng001/freeSub/main/clash.yaml"
     path: ./providers/proxies/Ruk1ng001_freeSub.yaml
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://www.google.com/generate_204
-      interval: 300
-      timeout: 3000
 
   chengaopan/AutoMergePublicNodes:
-    type: http
+    <<: *proxy-provider
     url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.yml"
     path: ./providers/proxies/chengaopan_AutoMergePublicNodes.yaml
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://www.google.com/generate_204
-      interval: 300
-      timeout: 3000
 
   ermaozi/get_subscribe:
-    type: http
+    <<: *proxy-provider
     url: "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml"
     path: ./providers/proxies/ermaozi_get_subscribe.yaml
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://www.google.com/generate_204
-      interval: 300
-      timeout: 3000
 
   peasoft/NoMoreWalls:
-    type: http
+    <<: *proxy-provider
     url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.meta.yml"
     path: ./providers/proxies/peasoft_NoMoreWalls.yaml
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://www.google.com/generate_204
-      interval: 300
-      timeout: 3000
 
   Flikify/getNode:
-    type: http
+    <<: *proxy-provider
     url: "https://raw.githubusercontent.com/Flikify/getNode/main/clash.yaml"
     path: ./providers/proxies/Flikify_getNode.yaml
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://www.google.com/generate_204
-      interval: 300
-      timeout: 3000
+
+rule-provider: &rule-provider
+  type: http
+  interval: 86400
 
 rule-providers:
   AD1:
-    type: http
+    <<: *rule-provider
     behavior: domain
     url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/AD.yaml"
     path: ./providers/rules/AD1.yaml
-    interval: 86400
-    
+
   AD2:
-    type: http
+    <<: *rule-provider
     behavior: domain
     url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyList.yaml"
     path: ./providers/rules/AD2.yaml
-    interval: 86400
-    
+
   AD3:
-    type: http
+    <<: *rule-provider
     behavior: domain
     url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyListChina.yaml"
     path: ./providers/rules/AD3.yaml
-    interval: 86400
 
   AD4:
-    type: http
+    <<: *rule-provider
     behavior: domain
     url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyPrivacy.yaml"
     path: ./providers/rules/AD4.yaml
-    interval: 86400
 
   AD5:
-    type: http
+    <<: *rule-provider
     behavior: domain
     url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/ProgramAD.yaml"
     path: ./providers/rules/AD5.yaml
-    interval: 86400
 
   AD6:
-    type: http
+    <<: *rule-provider
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
     path: ./providers/rules/AD6.yaml
-    interval: 86400
 
   iCloud:
-    type: http
+    <<: *rule-provider
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
     path: ./providers/rules/iCloud.yaml
-    interval: 86400
 
   Apple:
-    type: http
+    <<: *rule-provider
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
     path: ./providers/rules/Apple.yaml
-    interval: 86400
 
   Google:
-    type: http
+    <<: *rule-provider
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
     path: ./providers/rules/Google.yaml
-    interval: 86400
-    
+
   GoogleFCM:
-    type: http
+    <<: *rule-provider
     behavior: classical
     format: text
-    path: ./providers/rules/GoogleFCM.list 
-    url: "https://raw.githubusercontent.com/rules/GoogleFCM.list"
-    interval: 86400
+    path: ./providers/rules/GoogleFCM.list
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list"
 
   Proxy:
-    type: http
+    <<: *rule-provider
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
     path: ./providers/rules/Proxy.yaml
-    interval: 86400
 
   Direct:
-    type: http
+    <<: *rule-provider
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
     path: ./providers/rules/Direct.yaml
-    interval: 86400
 
   Private:
-    type: http
+    <<: *rule-provider
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
     path: ./providers/rules/Private.yaml
-    interval: 86400
-    
+
   TLDNOTCN:
-    type: http
+    <<: *rule-provider
     behavior: domain
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt"
     path: ./providers/rules/TLDNOTCN.yaml
-    interval: 86400
 
   TelegramCidr:
-    type: http
+    <<: *rule-provider
     behavior: ipcidr
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
     path: ./providers/rules/TelegramCidr.yaml
-    interval: 86400
 
   CNCidr:
-    type: http
+    <<: *rule-provider
     behavior: ipcidr
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
     path: ./providers/rules/CNCidr.yaml
-    interval: 86400
 
   LANCidr:
-    type: http
+    <<: *rule-provider
     behavior: ipcidr
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
     path: ./providers/rules/LANCidr.yaml
-    interval: 86400
 
   APP:
-    type: http
+    <<: *rule-provider
     behavior: classical
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
     path: ./providers/rules/APP.yaml
-    interval: 86400
+
+proxy-group-f: &proxy-group-f
+  url: "https://www.google.com/generate_204"
+  interval: 300
+  use:
+      - anaer/Sub
+      - qjlxg/aggregator
+      - soroushmirzaei/telegram-configs-collector
+      - ripaojiedian/freenode
+      - go4sharing/sub
+      - snakem982/proxypool
+      - Ruk1ng001/freeSub
+      - chengaopan/AutoMergePublicNodes
+      - ermaozi/get_subscribe
+      - peasoft/NoMoreWalls
+      - Flikify/getNode
+
+proxy-group-d: &proxy-group-d
+  url: "http://connect.rom.miui.com/generate_204"
+  interval: 300
+  use:
+      - anaer/Sub
+      - qjlxg/aggregator
+      - soroushmirzaei/telegram-configs-collector
+      - ripaojiedian/freenode
+      - go4sharing/sub
+      - snakem982/proxypool
+      - Ruk1ng001/freeSub
+      - chengaopan/AutoMergePublicNodes
+      - ermaozi/get_subscribe
+      - peasoft/NoMoreWalls
+      - Flikify/getNode
 
 proxy-groups:
   - name: 👆 PROXY F
     type: select
-    url: "https://www.google.com/generate_204"
-    interval: 300
+    <<: *proxy-group-f
+    icon: data:image/png;base64,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
     proxies:
       - ♻️ AUTO F
       - ⚖️ BALANCE CHF
       - ⚖️ BALANCE RRF
       - REJECT
-    use:
-      - anaer/Sub
-      - qjlxg/aggregator
-      - soroushmirzaei/telegram-configs-collector
-      - ripaojiedian/freenode
-      - go4sharing/sub
-      - snakem982/proxypool
-      - Ruk1ng001/freeSub
-      - chengaopan/AutoMergePublicNodes
-      - ermaozi/get_subscribe
-      - peasoft/NoMoreWalls
-      - Flikify/getNode
   
   - name: ♻️ AUTO F
     type: url-test
-    url: "https://www.google.com/generate_204"
-    interval: 300
+    <<: *proxy-group-f
     tolerance: 150
     hidden: true
-    use:
-      - anaer/Sub
-      - qjlxg/aggregator
-      - soroushmirzaei/telegram-configs-collector
-      - ripaojiedian/freenode
-      - go4sharing/sub
-      - snakem982/proxypool
-      - Ruk1ng001/freeSub
-      - chengaopan/AutoMergePublicNodes
-      - ermaozi/get_subscribe
-      - peasoft/NoMoreWalls
-      - Flikify/getNode
 
   - name: ⚖️ BALANCE CHF
     type: load-balance
-    url: "https://www.google.com/generate_204"
-    interval: 300
+    <<: *proxy-group-f
     strategy: consistent-hashing
     hidden: true
-    use:
-      - anaer/Sub
-      - qjlxg/aggregator
-      - soroushmirzaei/telegram-configs-collector
-      - ripaojiedian/freenode
-      - go4sharing/sub
-      - snakem982/proxypool
-      - Ruk1ng001/freeSub
-      - chengaopan/AutoMergePublicNodes
-      - ermaozi/get_subscribe
-      - peasoft/NoMoreWalls
-      - Flikify/getNode
 
   - name: ⚖️ BALANCE RRF
     type: load-balance
-    url: "https://www.google.com/generate_204"
-    interval: 300
+    <<: *proxy-group-f
     strategy: round-robin
     hidden: true
-    use:
-      - anaer/Sub
-      - qjlxg/aggregator
-      - soroushmirzaei/telegram-configs-collector
-      - ripaojiedian/freenode
-      - go4sharing/sub
-      - snakem982/proxypool
-      - Ruk1ng001/freeSub
-      - chengaopan/AutoMergePublicNodes
-      - ermaozi/get_subscribe
-      - peasoft/NoMoreWalls
-      - Flikify/getNode
 
   - name: 👆 PROXY D
     type: select
-    url: "http://connect.rom.miui.com/generate_204"
-    interval: 300
+    <<: *proxy-group-d
     proxies:
       - ♻️ AUTO D
       - ⚖️ BALANCE CHD
       - ⚖️ BALANCE RRD
       - DIRECT
       - REJECT
-    use:
-      - anaer/Sub
-      - qjlxg/aggregator
-      - soroushmirzaei/telegram-configs-collector
-      - ripaojiedian/freenode
-      - go4sharing/sub
-      - snakem982/proxypool
-      - Ruk1ng001/freeSub
-      - chengaopan/AutoMergePublicNodes
-      - ermaozi/get_subscribe
-      - peasoft/NoMoreWalls
-      - Flikify/getNode
 
   - name: ♻️ AUTO D
     type: url-test
-    url: "http://connect.rom.miui.com/generate_204"
-    interval: 300
+    <<: *proxy-group-d
     tolerance: 100
     hidden: true
-    use:
-      - anaer/Sub
-      - qjlxg/aggregator
-      - soroushmirzaei/telegram-configs-collector
-      - ripaojiedian/freenode
-      - go4sharing/sub
-      - snakem982/proxypool
-      - Ruk1ng001/freeSub
-      - chengaopan/AutoMergePublicNodes
-      - ermaozi/get_subscribe
-      - peasoft/NoMoreWalls
-      - Flikify/getNode
 
   - name: ⚖️ BALANCE CHD
     type: load-balance
-    url: "http://connect.rom.miui.com/generate_204"
-    interval: 300
+    <<: *proxy-group-d
     strategy: consistent-hashing
     hidden: true
-    use:
-      - anaer/Sub
-      - qjlxg/aggregator
-      - soroushmirzaei/telegram-configs-collector
-      - ripaojiedian/freenode
-      - go4sharing/sub
-      - snakem982/proxypool
-      - Ruk1ng001/freeSub
-      - chengaopan/AutoMergePublicNodes
-      - ermaozi/get_subscribe
-      - peasoft/NoMoreWalls
-      - Flikify/getNode
 
   - name: ⚖️ BALANCE RRD
     type: load-balance
-    url: "http://connect.rom.miui.com/generate_204"
-    interval: 300
+    <<: *proxy-group-d
     strategy: round-robin
     hidden: true
-    use:
-      - anaer/Sub
-      - qjlxg/aggregator
-      - soroushmirzaei/telegram-configs-collector
-      - ripaojiedian/freenode
-      - go4sharing/sub
-      - snakem982/proxypool
-      - Ruk1ng001/freeSub
-      - chengaopan/AutoMergePublicNodes
-      - ermaozi/get_subscribe
-      - peasoft/NoMoreWalls
-      - Flikify/getNode
 
 rules:
   - DOMAIN,clash.razord.top,DIRECT
