@@ -48,8 +48,8 @@ dns:
     - "https://dns.google/dns-query#👆 PROXY F"
   nameserver-policy:
     "ghproxy.net":
-      - 223.5.5.5
-      - 119.29.29.29
+      - "https://dns.alidns.com/dns-query"
+      - "https://doh.pub/dns-query"
     "geosite:cn":
       - "https://dns.alidns.com/dns-query#👆 PROXY D"
       - "https://doh.pub/dns-query#👆 PROXY D"
