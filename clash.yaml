@@ -346,6 +346,10 @@ proxy-groups:
       - ♻️ AUTO F
       - ⚖️ BALANCE CHF
       - ⚖️ BALANCE RRF
+      - ♻️ AUTO D
+      - ⚖️ BALANCE CHD
+      - ⚖️ BALANCE RRD
+      - DIRECT
       - REJECT
 
   - name: ❔ Others
