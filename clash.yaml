@@ -47,7 +47,7 @@ dns:
     - "https://1dot1dot1dot1.cloudflare-dns.com/#👆 PROXY F"
     - "https://dns.google/dns-query#👆 PROXY F"
   nameserver-policy:
-    "ghproxy.net":
+    "ghproxy.net,cdn.jsdelivr.net":
       - "https://dns.alidns.com/dns-query"
       - "https://doh.pub/dns-query"
     "geosite:cn":
