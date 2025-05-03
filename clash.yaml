@@ -343,12 +343,8 @@ proxy-groups:
     type: select
     <<: *proxy-group-f
     proxies:
-      - ♻️ AUTO F
-      - ⚖️ BALANCE CHF
-      - ⚖️ BALANCE RRF
-      - ♻️ AUTO D
-      - ⚖️ BALANCE CHD
-      - ⚖️ BALANCE RRD
+      - 🌎 PROXY F
+      - 🇨🇳 PROXY D
       - DIRECT
       - REJECT
 
@@ -356,9 +352,8 @@ proxy-groups:
     type: select
     <<: *proxy-group-f
     proxies:
-      - ♻️ AUTO F
-      - ⚖️ BALANCE CHF
-      - ⚖️ BALANCE RRF
+      - 🌎 PROXY F
+      - 🇨🇳 PROXY D
       - REJECT
 
 rules:
