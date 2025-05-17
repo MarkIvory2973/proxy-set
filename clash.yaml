@@ -348,6 +348,15 @@ proxy-groups:
       - DIRECT
       - REJECT
 
+  - name: ✈️ Telegram
+    type: select
+    <<: *proxy-group-f
+    proxies:
+      - 🌎 PROXY F
+      - 🇨🇳 PROXY D
+      - DIRECT
+      - REJECT
+
   - name: ❔ Others
     type: select
     <<: *proxy-group-f
@@ -357,9 +366,12 @@ proxy-groups:
       - REJECT
 
 rules:
+  - RULE-SET,APP,DIRECT
+  - GEOIP,LAN,DIRECT
+  - RULE-SET,LANCidr,DIRECT
+  - RULE-SET,Private,DIRECT
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
-  - RULE-SET,APP,DIRECT
 
   - RULE-SET,AD1,🛑 AD
   - RULE-SET,AD2,🛑 AD
@@ -367,10 +379,6 @@ rules:
   - RULE-SET,AD4,🛑 AD
   - RULE-SET,AD5,🛑 AD
   - RULE-SET,AD6,🛑 AD
-
-  - GEOIP,LAN,DIRECT
-  - RULE-SET,LANCidr,DIRECT
-  - RULE-SET,Private,DIRECT
 
   - GEOIP,CN,🇨🇳 PROXY D
   - RULE-SET,CNCidr,🇨🇳 PROXY D
@@ -381,5 +389,6 @@ rules:
   - RULE-SET,Proxy,🌎 PROXY F
   - RULE-SET,Google,🌎 PROXY F
   - RULE-SET,GoogleFCM,🌎 PROXY F
-  - RULE-SET,TelegramCidr,🌎 PROXY F
+  - RULE-SET,TelegramCidr,✈️ Telegram
+  
   - MATCH,❔ Others
