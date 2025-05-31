@@ -38,30 +38,30 @@ dns:
     - 1.1.1.1
     - 8.8.8.8
   proxy-server-nameserver:
-    - "https://dns.alidns.com/dns-query#👆 PROXY D"
-    - "https://doh.pub/dns-query#👆 PROXY D"
+    - "https://dns.alidns.com/dns-query#🇨🇳 PROXY D"
+    - "https://doh.pub/dns-query#🇨🇳 PROXY D"
   nameserver:
-    - "https://dns.alidns.com/dns-query#👆 PROXY D"
-    - "https://doh.pub/dns-query#👆 PROXY D"
+    - "https://dns.alidns.com/dns-query#🇨🇳 PROXY D"
+    - "https://doh.pub/dns-query#🇨🇳 PROXY D"
   fallback:
-    - "https://1dot1dot1dot1.cloudflare-dns.com/#👆 PROXY F"
-    - "https://dns.google/dns-query#👆 PROXY F"
+    - "https://1dot1dot1dot1.cloudflare-dns.com/#🌎 PROXY F"
+    - "https://dns.google/dns-query#🌎 PROXY F"
   nameserver-policy:
-    "ghproxy.net":
+    "sub.xfltd.bond,theqipilangjichang.net,ghproxy.net":
       - 223.5.5.5
       - 119.29.29.29
     "geosite:cn":
-      - "https://dns.alidns.com/dns-query#👆 PROXY D"
-      - "https://doh.pub/dns-query#👆 PROXY D"
+      - "https://dns.alidns.com/dns-query#🇨🇳 PROXY D"
+      - "https://doh.pub/dns-query#🇨🇳 PROXY D"
     "rule-set:Direct,iCloud,Apple":
-      - "https://dns.alidns.com/dns-query#👆 PROXY D"
-      - "https://doh.pub/dns-query#👆 PROXY D"
+      - "https://dns.alidns.com/dns-query#🇨🇳 PROXY D"
+      - "https://doh.pub/dns-query#🇨🇳 PROXY D"
     "geosite:geolocation-!cn":
-      - "https://1dot1dot1dot1.cloudflare-dns.com/#👆 PROXY F"
-      - "https://dns.google/dns-query#👆 PROXY F"
+      - "https://1dot1dot1dot1.cloudflare-dns.com/#🌎 PROXY F"
+      - "https://dns.google/dns-query#🌎 PROXY F"
     "rule-set:Proxy,Google,GoogleFCM":
-      - "https://1dot1dot1dot1.cloudflare-dns.com/#👆 PROXY F"
-      - "https://dns.google/dns-query#👆 PROXY F"
+      - "https://1dot1dot1dot1.cloudflare-dns.com/#🌎 PROXY F"
+      - "https://dns.google/dns-query#🌎 PROXY F"
   fallback-filter:
     geoip: true
     geoip-code: CN
@@ -291,6 +291,7 @@ proxy-groups:
       - ♻️ AUTO F
       - ⚖️ BALANCE CHF
       - ⚖️ BALANCE RRF
+      - DIRECT
       - REJECT
 
   - name: ♻️ AUTO F
@@ -363,6 +364,7 @@ proxy-groups:
     proxies:
       - 🌎 PROXY F
       - 🇨🇳 PROXY D
+      - DIRECT
       - REJECT
 
 rules:
