@@ -38,30 +38,30 @@ dns:
     - 1.1.1.1
     - 8.8.8.8
   proxy-server-nameserver:
-    - "https://dns.alidns.com/dns-query#🇨🇳 PROXY D"
-    - "https://doh.pub/dns-query#🇨🇳 PROXY D"
+    - "https://dns.alidns.com/dns-query#🖧 DNS D"
+    - "https://doh.pub/dns-query#🖧 DNS D"
   nameserver:
-    - "https://dns.alidns.com/dns-query#🇨🇳 PROXY D"
-    - "https://doh.pub/dns-query#🇨🇳 PROXY D"
+    - "https://dns.alidns.com/dns-query#🖧 DNS D"
+    - "https://doh.pub/dns-query#🖧 DNS D"
   fallback:
-    - "https://1dot1dot1dot1.cloudflare-dns.com/#🌎 PROXY F"
-    - "https://dns.google/dns-query#🌎 PROXY F"
+    - "https://1dot1dot1dot1.cloudflare-dns.com/#🖧 DNS F"
+    - "https://dns.google/dns-query#🖧 DNS F"
   nameserver-policy:
     "sub.xfltd.bond,theqipilangjichang.net,ghproxy.net":
       - 223.5.5.5
       - 119.29.29.29
     "geosite:cn":
-      - "https://dns.alidns.com/dns-query#🇨🇳 PROXY D"
-      - "https://doh.pub/dns-query#🇨🇳 PROXY D"
+      - "https://dns.alidns.com/dns-query#🖧 DNS D"
+      - "https://doh.pub/dns-query#🖧 DNS D"
     "rule-set:Direct,iCloud,Apple":
-      - "https://dns.alidns.com/dns-query#🇨🇳 PROXY D"
-      - "https://doh.pub/dns-query#🇨🇳 PROXY D"
+      - "https://dns.alidns.com/dns-query#🖧 DNS D"
+      - "https://doh.pub/dns-query#🖧 DNS D"
     "geosite:geolocation-!cn":
-      - "https://1dot1dot1dot1.cloudflare-dns.com/#🌎 PROXY F"
-      - "https://dns.google/dns-query#🌎 PROXY F"
+      - "https://1dot1dot1dot1.cloudflare-dns.com/#🖧 DNS F"
+      - "https://dns.google/dns-query#🖧 DNS F"
     "rule-set:Proxy,Google,GoogleFCM":
-      - "https://1dot1dot1dot1.cloudflare-dns.com/#🌎 PROXY F"
-      - "https://dns.google/dns-query#🌎 PROXY F"
+      - "https://1dot1dot1dot1.cloudflare-dns.com/#🖧 DNS F"
+      - "https://dns.google/dns-query#🖧 DNS F"
   fallback-filter:
     geoip: true
     geoip-code: CN
@@ -136,6 +136,17 @@ proxy-providers:
     <<: *proxy-provider
     url: "https://ghproxy.net/https://raw.githubusercontent.com/Flikify/getNode/main/clash.yaml"
     path: ./providers/proxies/Flikify_getNode.yaml
+
+proxies:
+  - name: 🧅 Tor
+    type: socks5
+    server: 127.0.0.1
+    port: 9050
+  
+  - name: 🧅 Tor Browser
+    type: socks5
+    server: 127.0.0.1
+    port: 9150
 
 rule-provider: &rule-provider
   type: http
@@ -291,6 +302,8 @@ proxy-groups:
       - ♻️ AUTO F
       - ⚖️ BALANCE CHF
       - ⚖️ BALANCE RRF
+      - 🧅 Tor
+      - 🧅 Tor Browser
       - DIRECT
       - REJECT
 
@@ -319,6 +332,8 @@ proxy-groups:
       - ♻️ AUTO D
       - ⚖️ BALANCE CHD
       - ⚖️ BALANCE RRD
+      - 🧅 Tor
+      - 🧅 Tor Browser
       - DIRECT
       - REJECT
 
@@ -340,12 +355,47 @@ proxy-groups:
     strategy: round-robin
     hidden: true
 
+  - name: 🖧 DNS F
+    type: select
+    <<: *proxy-group-f
+    proxies:
+      - 🌎 PROXY F
+      - ♻️ AUTO F
+      - ⚖️ BALANCE CHF
+      - ⚖️ BALANCE RRF
+      - DIRECT
+      - REJECT
+
+  - name: 🖧 DNS D
+    type: select
+    <<: *proxy-group-d
+    proxies:
+      - 🇨🇳 PROXY D
+      - ♻️ AUTO D
+      - ⚖️ BALANCE CHD
+      - ⚖️ BALANCE RRD
+      - DIRECT
+      - REJECT
+
+  - name: 🎭 Tor
+    type: select
+    <<: *proxy-group-f
+    proxies:
+      - 🌎 PROXY F
+      - ♻️ AUTO F
+      - ⚖️ BALANCE CHF
+      - ⚖️ BALANCE RRF
+      - DIRECT
+      - REJECT
+
   - name: 🛑 AD
     type: select
     <<: *proxy-group-f
     proxies:
       - 🌎 PROXY F
-      - 🇨🇳 PROXY D
+      - ♻️ AUTO F
+      - ⚖️ BALANCE CHF
+      - ⚖️ BALANCE RRF
       - DIRECT
       - REJECT
 
@@ -354,7 +404,9 @@ proxy-groups:
     <<: *proxy-group-f
     proxies:
       - 🌎 PROXY F
-      - 🇨🇳 PROXY D
+      - ♻️ AUTO F
+      - ⚖️ BALANCE CHF
+      - ⚖️ BALANCE RRF
       - DIRECT
       - REJECT
 
@@ -363,12 +415,24 @@ proxy-groups:
     <<: *proxy-group-f
     proxies:
       - 🌎 PROXY F
+      - ♻️ AUTO F
+      - ⚖️ BALANCE CHF
+      - ⚖️ BALANCE RRF
       - 🇨🇳 PROXY D
+      - ♻️ AUTO D
+      - ⚖️ BALANCE CHD
+      - ⚖️ BALANCE RRD
       - DIRECT
       - REJECT
 
 rules:
   - RULE-SET,APP,DIRECT
+  - PROCESS-NAME,tor,🎭 Tor
+  - PROCESS-NAME,tor.exe,🎭 Tor
+  - PROCESS-NAME,lyrebird,🎭 Tor
+  - PROCESS-NAME,lyrebird.exe,🎭 Tor
+  - PROCESS-NAME,conjure-client,🎭 Tor
+  - PROCESS-NAME,conjure-client.exe,🎭 Tor
   - GEOIP,LAN,DIRECT
   - RULE-SET,LANCidr,DIRECT
   - RULE-SET,Private,DIRECT
