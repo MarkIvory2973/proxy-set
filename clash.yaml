@@ -285,7 +285,7 @@ proxy-group-f: &proxy-group-f
       - Flikify/getNode
 
 proxy-group-d: &proxy-group-d
-  url: "http://connect.rom.miui.com/generate_204"
+  url: "https://connect.rom.miui.com/generate_204"
   interval: 300
   use:
       - anaer/Sub
