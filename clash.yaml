@@ -259,8 +259,14 @@ rule-providers:
   APP:
     <<: *rule-provider
     behavior: classical
-    url: "https://ghproxy.net/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt"
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/MarkIvory2973/ProxySet/refs/heads/main/rules/applications.yaml"
     path: ./providers/rules/APP.yaml
+
+  Tor:
+    <<: *rule-provider
+    behavior: classical
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/MarkIvory2973/ProxySet/refs/heads/main/rules/tor.yaml"
+    path: ./providers/rules/Tor.yaml
 
 proxy-group-f: &proxy-group-f
   url: "https://www.google.com/generate_204"
@@ -427,12 +433,7 @@ proxy-groups:
 
 rules:
   - RULE-SET,APP,DIRECT
-  - PROCESS-NAME,tor,🎭 Tor
-  - PROCESS-NAME,tor.exe,🎭 Tor
-  - PROCESS-NAME,lyrebird,🎭 Tor
-  - PROCESS-NAME,lyrebird.exe,🎭 Tor
-  - PROCESS-NAME,conjure-client,🎭 Tor
-  - PROCESS-NAME,conjure-client.exe,🎭 Tor
+  - RULE-SET,Tor,🎭 Tor
   - GEOIP,LAN,DIRECT
   - RULE-SET,LANCidr,DIRECT
   - RULE-SET,Private,DIRECT
