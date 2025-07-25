@@ -1,0 +1,7 @@
+payload:
+  - PROCESS-NAME,tor
+  - PROCESS-NAME,tor.exe
+  - PROCESS-NAME,lyrebird
+  - PROCESS-NAME,lyrebird.exe
+  - PROCESS-NAME,conjure-client
+  - PROCESS-NAME,conjure-client.exe
