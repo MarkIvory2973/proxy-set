@@ -44,10 +44,10 @@ dns:
     - "https://dns.alidns.com/dns-query#🖧 DNS D"
     - "https://doh.pub/dns-query#🖧 DNS D"
   fallback:
-    - "https://1dot1dot1dot1.cloudflare-dns.com/#🖧 DNS F"
+    - "https://mozilla.cloudflare-dns.com/dns-query#🖧 DNS F"
     - "https://dns.google/dns-query#🖧 DNS F"
   nameserver-policy:
-    "sub.xfltd.bond,theqipilangjichang.net,ghproxy.net":
+    "vw5bm.us.kg":
       - 223.5.5.5
       - 119.29.29.29
     "geosite:cn":
@@ -57,10 +57,10 @@ dns:
       - "https://dns.alidns.com/dns-query#🖧 DNS D"
       - "https://doh.pub/dns-query#🖧 DNS D"
     "geosite:geolocation-!cn":
-      - "https://1dot1dot1dot1.cloudflare-dns.com/#🖧 DNS F"
+      - "https://mozilla.cloudflare-dns.com/dns-query#🖧 DNS F"
       - "https://dns.google/dns-query#🖧 DNS F"
     "rule-set:Proxy,Google,GoogleFCM":
-      - "https://1dot1dot1dot1.cloudflare-dns.com/#🖧 DNS F"
+      - "https://mozilla.cloudflare-dns.com/dns-query#🖧 DNS F"
       - "https://dns.google/dns-query#🖧 DNS F"
   fallback-filter:
     geoip: true
