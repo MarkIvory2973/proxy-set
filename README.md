@@ -1,4 +1,4 @@
-# ProxySet
+# Proxy Set
 
 Mihomo (原 Clash Meta) 的公开免费节点集。 
 
@@ -12,8 +12,8 @@ Mihomo (原 Clash Meta) 的公开免费节点集。
 
 |源|链接|
 |:-:|:-|
-|GitHub|https://raw.githubusercontent.com/MarkIvory2973/ProxySet/refs/heads/main/clash.yaml|
-|Cloudflare Workers|https://ghproxy.net/https://raw.githubusercontent.com/MarkIvory2973/ProxySet/refs/heads/main/clash.yaml|
+|GitHub|https://raw.githubusercontent.com/MarkIvory2973/proxy-set/refs/heads/main/clash.yaml|
+|Cloudflare Workers|https://ghproxy.net/https://raw.githubusercontent.com/MarkIvory2973/proxy-set/refs/heads/main/clash.yaml|
 
 ## 策略组
 
