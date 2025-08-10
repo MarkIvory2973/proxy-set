@@ -47,7 +47,7 @@ dns:
     - "https://mozilla.cloudflare-dns.com/dns-query#🖧 DNS F"
     - "https://dns.google/dns-query#🖧 DNS F"
   nameserver-policy:
-    "vw5bm.us.kg":
+    "vw5bm.us.kg,ghproxy.net":
       - 223.5.5.5
       - 119.29.29.29
     "geosite:cn":
