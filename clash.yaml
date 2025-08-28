@@ -40,14 +40,8 @@ dns:
   proxy-server-nameserver:
     - "https://dns.alidns.com/dns-query#🖧 DNS D"
     - "https://doh.pub/dns-query#🖧 DNS D"
-  nameserver:
-    - "https://dns.alidns.com/dns-query#🖧 DNS D"
-    - "https://doh.pub/dns-query#🖧 DNS D"
-  fallback:
-    - "https://mozilla.cloudflare-dns.com/dns-query#🖧 DNS F"
-    - "https://dns.google/dns-query#🖧 DNS F"
   nameserver-policy:
-    "vw5bm.us.kg,ghproxy.net":
+    "ghproxy.net":
       - 223.5.5.5
       - 119.29.29.29
     "geosite:cn":
@@ -62,9 +56,14 @@ dns:
     "rule-set:Proxy,Google,GoogleFCM":
       - "https://mozilla.cloudflare-dns.com/dns-query#🖧 DNS F"
       - "https://dns.google/dns-query#🖧 DNS F"
+  nameserver:
+    - "https://dns.alidns.com/dns-query#🖧 DNS D"
+    - "https://doh.pub/dns-query#🖧 DNS D"
+  fallback:
+    - "https://mozilla.cloudflare-dns.com/dns-query#🖧 DNS F"
+    - "https://dns.google/dns-query#🖧 DNS F"
   fallback-filter:
     geoip: true
-    geoip-code: CN
     ipcidr:
       - 240.0.0.0/4
     domain:
