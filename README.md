@@ -6,7 +6,7 @@ Mihomo (原 Clash Meta) 的公开免费节点集。
 
 ⚠ 不建议使用免费节点访问**敏感内容**。如果确实需要访问建议搭配 [Tor](https://www.torproject.org/download/) (**需代理**) 或作为跳板使用。
 
-⚠ 选择 **🧅 Tor** / **🧅 Tor Browser** 方式代理服务时，需要调整 **🎭 Tor** 和 **🖧 DNS F** / **🖧 DNS D**，以防止出现**套娃现象**。
+⚠ 选择 **🧅 Tor** / **🧅 Tor Browser** 方式代理服务时，需要调整 **🎭 Tor**，以防止出现**套娃现象**。
 
 ## 快速访问
 
