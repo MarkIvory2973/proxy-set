@@ -57,19 +57,8 @@ dns:
       - "https://mozilla.cloudflare-dns.com/dns-query#🖧 DNS F"
       - "https://dns.google/dns-query#🖧 DNS F"
   nameserver:
-    - "https://dns.alidns.com/dns-query#🖧 DNS D"
-    - "https://doh.pub/dns-query#🖧 DNS D"
-  fallback:
-    - "https://mozilla.cloudflare-dns.com/dns-query#🖧 DNS F"
-    - "https://dns.google/dns-query#🖧 DNS F"
-  fallback-filter:
-    geoip: true
-    ipcidr:
-      - 240.0.0.0/4
-    domain:
-      - "+.google.com"
-      - "+.facebook.com"
-      - "+.youtube.com"
+    - "https://mozilla.cloudflare-dns.com/dns-query#🖧 DNS O"
+    - "https://dns.google/dns-query#🖧 DNS O"
 
 proxy-provider: &proxy-provider
   type: http
@@ -394,6 +383,23 @@ proxy-groups:
     type: select
     <<: *proxy-group-d
     proxies:
+      - 🇨🇳 PROXY D
+      - ♻️ AUTO D
+      - ⚖️ BALANCE CHD
+      - ⚖️ BALANCE RRD
+      - 🧅 Tor
+      - 🧅 Tor Browser
+      - DIRECT
+      - REJECT
+
+  - name: 🖧 DNS O
+    type: select
+    <<: *proxy-group-f
+    proxies:
+      - 🌎 PROXY F
+      - ♻️ AUTO F
+      - ⚖️ BALANCE CHF
+      - ⚖️ BALANCE RRF
       - 🇨🇳 PROXY D
       - ♻️ AUTO D
       - ⚖️ BALANCE CHD
