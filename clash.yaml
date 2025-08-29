@@ -360,6 +360,23 @@ proxy-groups:
     strategy: round-robin
     hidden: true
 
+  - name: ❔ Others
+    type: select
+    <<: *proxy-group-f
+    proxies:
+      - 🌎 PROXY F
+      - ♻️ AUTO F
+      - ⚖️ BALANCE CHF
+      - ⚖️ BALANCE RRF
+      - 🇨🇳 PROXY D
+      - ♻️ AUTO D
+      - ⚖️ BALANCE CHD
+      - ⚖️ BALANCE RRD
+      - 🧅 Tor
+      - 🧅 Tor Browser
+      - DIRECT
+      - REJECT
+
   - name: 🖧 DNS F
     type: select
     <<: *proxy-group-f
@@ -368,6 +385,8 @@ proxy-groups:
       - ♻️ AUTO F
       - ⚖️ BALANCE CHF
       - ⚖️ BALANCE RRF
+      - 🧅 Tor
+      - 🧅 Tor Browser
       - DIRECT
       - REJECT
 
@@ -379,6 +398,8 @@ proxy-groups:
       - ♻️ AUTO D
       - ⚖️ BALANCE CHD
       - ⚖️ BALANCE RRD
+      - 🧅 Tor
+      - 🧅 Tor Browser
       - DIRECT
       - REJECT
 
@@ -401,6 +422,8 @@ proxy-groups:
       - ♻️ AUTO F
       - ⚖️ BALANCE CHF
       - ⚖️ BALANCE RRF
+      - 🧅 Tor
+      - 🧅 Tor Browser
       - DIRECT
       - REJECT
 
@@ -412,21 +435,8 @@ proxy-groups:
       - ♻️ AUTO F
       - ⚖️ BALANCE CHF
       - ⚖️ BALANCE RRF
-      - DIRECT
-      - REJECT
-
-  - name: ❔ Others
-    type: select
-    <<: *proxy-group-f
-    proxies:
-      - 🌎 PROXY F
-      - ♻️ AUTO F
-      - ⚖️ BALANCE CHF
-      - ⚖️ BALANCE RRF
-      - 🇨🇳 PROXY D
-      - ♻️ AUTO D
-      - ⚖️ BALANCE CHD
-      - ⚖️ BALANCE RRD
+      - 🧅 Tor
+      - 🧅 Tor Browser
       - DIRECT
       - REJECT
 
